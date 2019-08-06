@@ -1,0 +1,35 @@
+group 'testTask'
+version '1.0'
+apply plugin: 'java'
+apply plugin: 'com.github.johnrengelman.shadow'
+sourceCompatibility = 1.8
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.1'
+    }
+}
+repositories {
+    mavenCentral()
+}
+jar{
+    manifest{
+        attributes 'Main-Class': 'testprog.tests.FinalTest'
+    }
+}
+wrapper{
+    gradleVersion = '4.9'
+}
+dependencies {
+    compile group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '3.6.1'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '3.141.59'
+    compile 'ch.qos.logback:logback-classic:1.1.2'
+}
